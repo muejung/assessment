@@ -46,7 +46,7 @@ public class UserTicketService {
                     userTicketRepository.deleteTicketeById(userId, ticketId);
                     return ResponseEntity.ok("\"tickets\": \"" + ticketId + "\"");
                 } else {
-                    return ResponseEntity.badRequest().body("\"Lottery Not Found\"");
+                    return ResponseEntity.badRequest().body("\"Lottery tickets you want to sell back were not found\"");
                 }
             } else {
                 return ResponseEntity.badRequest().body("\"Lottery tickets you want to sell back were not found\"");

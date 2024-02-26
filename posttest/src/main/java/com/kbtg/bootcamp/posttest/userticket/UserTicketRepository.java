@@ -22,5 +22,5 @@ public interface UserTicketRepository extends JpaRepository <UserTicket, Long> {
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM user_ticket WHERE userid = :userid AND ticketid = :ticketId", nativeQuery = true)
-    void deleteTicketeById(@Param("userid") String userId, @Param("ticketId") String ticketId);
+    int deleteTicketeById(@Param("userid") String userId, @Param("ticketId") String ticketId);
 }

@@ -142,3 +142,12 @@ Total Ticket = 2 | Total Price = 160]
 ```json
 "Lottery must contain 6 digits without spaces"
 ```
+– ผู้ใช้ต้องทำการป้อน `"ticketId"` ที่มีการทำรายการซื้อไปแล้วเท่านั้น
+* Request URL
+```java
+  DELETE /users/1234567890/lotteries/999999
+```
+* Response Body
+```json
+"Lottery tickets you want to sell back were not found"
+```

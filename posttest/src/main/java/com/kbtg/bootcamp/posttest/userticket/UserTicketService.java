@@ -41,12 +41,17 @@ public class UserTicketService {
     public ResponseEntity<String> deleteTicketbyUser(String userId, String ticketId) {
         if(isUserPattern(userId)) {
             if (isLotteryPattern(ticketId)) {
-                userTicketRepository.deleteTicketeById(userId, ticketId);
-                return ResponseEntity.ok("\"tickets\": \"" + ticketId + "\"");
+                int ticketDeleted = userTicketRepository.deleteTicketeById(userId, ticketId);
+                if (ticketDeleted > 0) {
+                    userTicketRepository.deleteTicketeById(userId, ticketId);
+                    return ResponseEntity.ok("\"tickets\": \"" + ticketId + "\"");
+                } else {
+                    return ResponseEntity.badRequest().body("\"Lottery Not Found\"");
+                }
             } else {
-                return ResponseEntity.badRequest().body("\"Lottery must contain 6 digits without spaces\"");
+                return ResponseEntity.badRequest().body("\"Lottery tickets you want to sell back were not found\"");
             }
-        } else {
+        }else {
             return ResponseEntity.badRequest().body("\"UserId must contain 10 digits without spaces\"");
         }
     }

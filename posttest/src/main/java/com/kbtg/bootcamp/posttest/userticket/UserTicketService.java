@@ -49,7 +49,7 @@ public class UserTicketService {
                     return ResponseEntity.badRequest().body("\"Lottery tickets you want to sell back were not found\"");
                 }
             } else {
-                return ResponseEntity.badRequest().body("\"Lottery tickets you want to sell back were not found\"");
+                return ResponseEntity.badRequest().body("\"Lottery must contain 6 digits without spaces\"");
             }
         }else {
             return ResponseEntity.badRequest().body("\"UserId must contain 10 digits without spaces\"");

@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    image: springboot:latest
+    build: ./
+    container_name: app-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5433/PostTestDB
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+    ports:
+      - "8888:8888"
+
+  db:
+    image: postgres:latest
+    container_name: db-container
+    environment:
+      POSTGRES_DB: PostTestDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
